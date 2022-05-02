@@ -1,2 +1,2 @@
 # This wordd is intentionally misspelled.
-echo "Foo."
+echo "foo"
