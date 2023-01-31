@@ -1,6 +1,6 @@
 {
   "name": "test-2",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A mod for The Binding of Isaac: Repentance.",
   "keywords": [
     "isaac",
@@ -13,7 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "isaac-typescript-definitions": "^11.1.0",
-    "isaacscript": "^3.4.20",
+    "isaacscript": "^3.4.21",
     "isaacscript-common": "^21.1.1",
     "isaacscript-lint": "^4.8.3",
     "isaacscript-spell": "^1.2.31",
