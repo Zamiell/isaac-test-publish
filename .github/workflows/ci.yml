@@ -40,27 +40,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup steamcmd
-        # https://github.com/CyberAndrii/setup-steamcmd
         uses: CyberAndrii/setup-steamcmd@v1
 
-      - name: Create the steamcmd config file
-        run: echo $content > /tmp/metadata.vdf
+      - name: Create config file
+        run: |
+          echo $content >> $config_file
+          cat $config_file
         env:
-          # Change the below "publishedfileid" value to match the "id" field of this mod's
-          # "metadata.xml" file.
+          config_file: ${{ github.workspace }}/workshop_build.vdf
           content: >
             "workshopitem"
             {
-              "appid" "250900"
-              "publishedfileid" "2926446220"
-              "contentfolder" "${{ github.workspace }}/mod"
+            "appid"  "250900"
+            "publishedfileid"  "2926446220"
+            "contentfolder"  "${{ github.workspace }}/mod/"
+            "changenote"  "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
-
       - name: Upload to workshop
         run: >-
           steamcmd
           +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ secrets.STEAM_OTP }}"
-          +workshop_build_item "/tmp/metadata.vdf"
+          +workshop_build_item "${{ github.workspace }}/workshop_build.vdf"
           +quit
 
   #discord:
