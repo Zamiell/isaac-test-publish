@@ -39,6 +39,9 @@ jobs:
     if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
     runs-on: ubuntu-latest
     steps:
+      - name: Debug
+        run: ls -l
+
       - name: steam-workshop-upload
         uses: IsaacScript/isaac-steam-workshop-upload@main
         with:
