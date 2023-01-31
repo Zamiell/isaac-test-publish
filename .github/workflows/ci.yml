@@ -35,7 +35,7 @@ jobs:
         run: bash lint.sh
 
       - name: Publish the mod on the Steam Workshop
-        if: contains(github.event.head_commit.message, 'chore:\ release') && github.event_name != 'pull_request'
+        if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
         uses: arma-actions/workshop-upload@v1
         with:
           appId: "250900" # This is the application ID for The Binding of Isaac: Rebirth.
