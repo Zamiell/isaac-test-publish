@@ -34,15 +34,8 @@ jobs:
       - name: Perform automated checks
         run: bash lint.sh
 
-  publish_to_steam_workshop:
-    needs: [build_and_lint]
-    if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Debug
-        run: ls -l
-
       - name: steam-workshop-upload
+        if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
         uses: IsaacScript/isaac-steam-workshop-upload@main
         with:
           metadata_xml_id: 2926446220
