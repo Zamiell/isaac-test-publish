@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/metadata.xsd" ?>
+<metadata>
+  <name>test-2</name>
+  <directory>test-2</directory>
+  <description>test-2 is a currently a work in progress.</description>
+  <version>1.0</version>
+  <visibility />
+</metadata>
