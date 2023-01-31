@@ -43,7 +43,7 @@ jobs:
         run: |
           ls -la $content_dir/
         env:
-          content_dir: ${{ github.workspace }}/mod/
+          content_dir: ${{ github.workspace }}
 
       - name: Setup steamcmd
         uses: CyberAndrii/setup-steamcmd@v1
@@ -62,6 +62,10 @@ jobs:
             "contentfolder"  "${{ github.workspace }}/mod/"
             "changenote"  "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             }
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+
       - name: Upload to workshop
         run: >-
           steamcmd
