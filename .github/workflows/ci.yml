@@ -34,8 +34,16 @@ jobs:
       - name: Perform automated checks
         run: bash lint.sh
 
-  # To enable CI failure notifications over Discord, add a "DISCORD_WEBHOOK" secret to the
-  # repository equal to the URL for the webhook, and then uncomment the lines below.
+      - name: Publish the mod on the Steam Workshop
+        if: contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'
+        uses: arma-actions/workshop-upload@v1
+        with:
+          appId: '250900'      # This is the application ID for The Binding of Isaac: Rebirth.
+          itemId: '2926446220' # From the "id" field of the "metadata.xml" file.
+          contentPath: 'mod'
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
 
   #discord:
   #  name: Discord Failure Notification

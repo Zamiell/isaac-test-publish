@@ -8,6 +8,6 @@ function main() {
   const mod = RegisterMod(MOD_NAME, 1);
 
   mod.AddCallback(ModCallback.POST_NEW_ROOM, () => {
-    print("test2");
+    print("test - number 3");
   });
 }
