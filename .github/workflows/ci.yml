@@ -39,39 +39,16 @@ jobs:
     if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
     runs-on: ubuntu-latest
     steps:
-      - name: Print mod files
-        run: |
-          ls -la $content_dir/
+      - name: steam-workshop-upload
+        uses: weilbyte/steam-workshop-upload@v1
+        with:
+          appid: 250900
+          itemid: 2926446220
+          path: "mod"
         env:
-          content_dir: ${{ github.workspace }}
-
-      - name: Setup steamcmd
-        uses: CyberAndrii/setup-steamcmd@v1
-
-      - name: Create config file
-        run: |
-          echo $content >> $config_file
-          cat $config_file
-        env:
-          config_file: ${{ github.workspace }}/workshop_build.vdf
-          content: >
-            "workshopitem"
-            {
-            "appid"  "250900"
-            "publishedfileid"  "2926446220"
-            "contentfolder"  "${{ github.workspace }}/mod/"
-            "changenote"  "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            }
-
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
-
-      - name: Upload to workshop
-        run: >-
-          steamcmd
-          +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ secrets.STEAM_OTP }}"
-          +workshop_build_item "${{ github.workspace }}/workshop_build.vdf"
-          +quit
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+          STEAM_TFASEED: ${{ secrets.STEAM_TFASEED }}
 
   #discord:
   #  name: Discord Failure Notification
