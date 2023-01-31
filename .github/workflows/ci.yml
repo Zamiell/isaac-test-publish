@@ -34,16 +34,34 @@ jobs:
       - name: Perform automated checks
         run: bash lint.sh
 
-      - name: Publish the mod on the Steam Workshop
-        if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
-        uses: arma-actions/workshop-upload@v1
-        with:
-          appId: "250900" # This is the application ID for The Binding of Isaac: Rebirth.
-          itemId: "2926446220" # From the "id" field of the "metadata.xml" file.
-          contentPath: "mod"
+  publish_to_steam_workshop:
+    needs: [build_and_lint]
+    if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup steamcmd
+        # https://github.com/CyberAndrii/setup-steamcmd
+        uses: CyberAndrii/setup-steamcmd@v1
+
+      - name: Create the steamcmd config file
+        run: echo $content > /tmp/metadata.vdf
         env:
-          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
-          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+          # Change the below "publishedfileid" value to match the "id" field of this mod's
+          # "metadata.xml" file.
+          content: >
+            "workshopitem"
+            {
+              "appid" "250900"
+              "publishedfileid" "2926446220"
+              "contentfolder" "${{ github.workspace }}/mod"
+            }
+
+      - name: Upload to workshop
+        run: >-
+          steamcmd
+          +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ secrets.STEAM_OTP }}"
+          +workshop_build_item "/tmp/metadata.vdf"
+          +quit
 
   #discord:
   #  name: Discord Failure Notification
