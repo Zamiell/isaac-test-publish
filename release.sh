@@ -10,13 +10,10 @@ cd "$DIR"
 
 git pull --rebase
 
-if ! npx git-dirty; then
-  # The current working directory is dirty. (Unintuitively, the "git-dirty" returns 1 if the current
-  # working directory is dirty.)
+GIT_STATUS=$(git status --short)
+if [ ! -z "$GIT_STATUS" ]; then
   echo "Error: The current working directory must be clean before releasing a new version. Please push your changes to Git."
   exit 1
 fi
 
 python "$DIR/release.py"
-
-git add --all && git commit --message "chore: release" && git push --set-upstream origin main
