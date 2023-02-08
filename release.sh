@@ -10,6 +10,6 @@ cd "$DIR"
 
 npm version patch
 
-VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
+VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | awk '{$1=$1};1')
 echo "$VERSION" > "$DIR/mod/version.txt"
 git add --all && git commit --message "chore: release $VERSION" && git push
