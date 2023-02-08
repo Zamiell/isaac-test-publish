@@ -1,88 +1,174 @@
-// These are Visual Studio Code settings that should apply to this particular repository.
+// These are Visual Studio Code settings that should apply to this particular repository
 {
   // ----------------
   // Vanilla settings
   // ----------------
 
-  // This matches the Airbnb JavaScript style guide.
   "editor.rulers": [100],
   "editor.tabSize": 2,
 
   "files.associations": {
-    "*.anm2": "xml", // anm2 files are just XML files.
-    "*.dat": "json", // Nearly all mods save JSON to the "save#.dat" file.
-    ".env*": "shellscript", // e.g. ".env.example" is the same as ".env".
+    "*.anm2": "xml"
   },
 
-  // We want to always use "lf" to be consistent with all platforms.
+  // Linux line endings are used in this project
   "files.eol": "\n",
 
-  // Automatically removing all trailing whitespace when saving a file.
+  // Automatically removing all trailing whitespace when saving a file
   "files.trimTrailingWhitespace": true,
-
-  // Configure glob patterns for excluding files and folders in full text searches and quick open.
-  "search.exclude": {
-    "**/*.png": true,
-    "**/*.wav": true,
-    "**/dist/": true,
-    "**/node_modules/": true,
-  },
-
-  // ------------------
-  // Extension settings
-  // ------------------
-
-  // Use Prettier to format "cspell.json".
-  "cSpell.autoFormatConfigFile": true,
 
   // -----------------
   // Language settings
   // -----------------
 
-  // By default, VSCode will not automatically fill-in function arguments.
-  "javascript.suggest.completeFunctionCalls": true,
-  "typescript.suggest.completeFunctionCalls": true,
-
-  // By default, VSCode will prefer non-relative paths for deeply nested files.
-  "javascript.preferences.importModuleSpecifier": "relative",
-  "typescript.preferences.importModuleSpecifier": "relative",
-
   // Automatically run the formatter when certain files are saved.
-  "[javascript]": {
-    "editor.codeActionsOnSave": ["source.fixAll.eslint"],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua",
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
   },
-  "[typescript]": {
-    "editor.codeActionsOnSave": ["source.fixAll.eslint"],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-  },
+
+  // Isaac globals, auto-defined from Filloax's extension.
+  "Lua.diagnostics.globals": [
+    "ActionTriggers",
+    "ActiveSlot",
+    "BabySubType",
+    "BackdropType",
+    "BatterySubType",
+    "BedSubType",
+    "BitSet128",
+    "BombSubType",
+    "BombVariant",
+    "ButtonAction",
+    "CacheFlag",
+    "Card",
+    "Challenge",
+    "ChampionColor",
+    "ChestSubType",
+    "CoinSubType",
+    "CollectibleType",
+    "Color",
+    "CppContainer",
+    "DamageFlag",
+    "Difficulty",
+    "Direction",
+    "DoorSlot",
+    "DoorState",
+    "DoorVariant",
+    "EffectVariant",
+    "Entity",
+    "EntityBomb",
+    "EntityCollisionClass",
+    "EntityEffect",
+    "EntityFamiliar",
+    "EntityFlag",
+    "EntityGridCollisionClass",
+    "EntityKnife",
+    "EntityLaser",
+    "EntityNPC",
+    "EntityPartition",
+    "EntityPickup",
+    "EntityPlayer",
+    "EntityProjectile",
+    "EntityPtr",
+    "EntityRef",
+    "EntityTear",
+    "EntityType",
+    "FamiliarVariant",
+    "Font",
+    "Game",
+    "GameStateFlag",
+    "GetPtrHash",
+    "GridCollisionClass",
+    "GridEntity",
+    "GridEntityDesc",
+    "GridEntityDoor",
+    "GridEntityPit",
+    "GridEntityPoop",
+    "GridEntityPressurePlate",
+    "GridEntityRock",
+    "GridEntitySpikes",
+    "GridEntityTNT",
+    "GridEntityType",
+    "GridRooms",
+    "HUD",
+    "HeartSubType",
+    "Input",
+    "InputHook",
+    "Isaac",
+    "ItemConfig",
+    "ItemPool",
+    "ItemPoolType",
+    "ItemType",
+    "KColor",
+    "KeySubType",
+    "Keyboard",
+    "LaserOffset",
+    "LaserSubType",
+    "Level",
+    "LevelCurse",
+    "LevelStage",
+    "LevelStateFlag",
+    "LocustSubtypes",
+    "ModCallbacks",
+    "Mouse",
+    "Music",
+    "MusicManager",
+    "NpcState",
+    "NullItemID",
+    "Options",
+    "PathFinder",
+    "PickupPrice",
+    "PickupVariant",
+    "PillColor",
+    "PillEffect",
+    "PlayerForm",
+    "PlayerSpriteLayer",
+    "PlayerType",
+    "PlayerTypes",
+    "PoopPickupSubType",
+    "PoopSpellType",
+    "ProjectileFlags",
+    "ProjectileParams",
+    "ProjectileVariant",
+    "QueueItemData",
+    "REPENTANCE",
+    "RNG",
+    "Random",
+    "RandomVector",
+    "RegisterMod",
+    "RenderMode",
+    "Room",
+    "RoomConfig",
+    "RoomDescriptor",
+    "RoomShape",
+    "RoomTransitionAnim",
+    "RoomType",
+    "SFXManager",
+    "SackSubType",
+    "SeedEffect",
+    "Seeds",
+    "ShockwaveParams",
+    "SkinColor",
+    "SortingLayer",
+    "SoundEffect",
+    "Sprite",
+    "StageType",
+    "StartDebug",
+    "TearFlags",
+    "TearParams",
+    "TearVariant",
+    "TemporaryEffect",
+    "TemporaryEffects",
+    "TrinketType",
+    "UseFlag",
+    "Vector",
+    "WeaponType",
+    "EID",
+    "CustomGameOver",
+    "Encyclopedia",
+    "DetailedRespawn",
+    "AwaitingTextInput",
+    "DeadSeaScrollsMenu"
+  ],
 }

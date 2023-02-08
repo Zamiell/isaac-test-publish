@@ -8,8 +8,15 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd "$DIR"
 
-npm version patch
+git pull --rebase
 
-VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | awk '{$1=$1};1')
-echo "$VERSION" > "$DIR/mod/version.txt"
-git add --all && git commit --message "chore: release $VERSION" && git push
+if ! npx git-dirty; then
+  # The current working directory is dirty. (Unintuitively, the "git-dirty" returns 1 if the current
+  # working directory is dirty.)
+  echo "Error: The current working directory must be clean before releasing a new version. Please push your changes to Git."
+  exit 1
+fi
+
+python "$DIR/release.py"
+
+git add --all && git commit --message "chore: release" && git push --set-upstream origin main
