@@ -44,7 +44,7 @@ def increment_lua_version():
     )
     text = re.sub("local IS_DEV = true", "local IS_DEV = false", text)
 
-    with open(LUA_FILE_PATH, "w") as f:
+    with open(LUA_FILE_PATH, "w", newline="\n") as f:
         f.write(text)
 
     return new_version
@@ -63,7 +63,7 @@ def set_metadata_xml_version(new_version: str):
         text,
     )
 
-    with open(METADATA_XML_PATH, "w") as f:
+    with open(METADATA_XML_PATH, "w", newline="\n") as f:
         f.write(text)
 
 
