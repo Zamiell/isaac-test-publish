@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Upload the mod to Steam Workshop (if this is a release commit)
-        uses: IsaacScript/isaac-steam-workshop-upload@main
+        uses: IsaacScript/isaac-steam-workshop-upload@v2
         if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
         with:
           mod_path: .
